@@ -1,15 +1,17 @@
 import React from "react";
-import Footer from "../layout/Footer";
-import Header from "../layout/Header";
+import { Footer } from "../layout/Footer";
+import { Header } from "../layout/Header";
 import { Form, Button, Container } from "react-bootstrap";
 
 export const RegisterPage = () => {
   return (
     <div>
       <Header />
-      <div className="main register-page">
-        <Container>
-          <Form>
+      <div className="main register-page p-5">
+        <Container className="m-3">
+          <Form className="border p-4 rounded shadow-lg">
+            <h3>Sign up new admin user </h3>
+            <hr />
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
@@ -35,3 +37,5 @@ export const RegisterPage = () => {
     </div>
   );
 };
+
+export default RegisterPage;
