@@ -5,7 +5,8 @@ export const Footer = () => {
     <div className="bg-dark text-light p-5 text-center">
       &copy; Copy Rights All Reseved.
        Made by{" "}
-      <a href="https://www.shitalrayamajhi.com/">Shital Rayamajhi ❤️ </a>
+      <a href="https://www.shitalrayamajhi.com/">Shital Rayamajhi </a> ❤️
+      <p>T&Cs applies.</p>
     </div>
   );
 };
