@@ -33,8 +33,9 @@ export const LoginPage = () => {
 
   useEffect(() => {
     user?._id && navigate("/dashboard");
-  }, [user, navigate]);
 
+    //TODO: make router private and auto login
+  }, [user, navigate]);
   return (
     <div>
       <Header />

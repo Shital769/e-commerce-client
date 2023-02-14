@@ -7,11 +7,17 @@ export const loginAction = (formData) => async (dispatch) => {
     dispatch(requestPending());
 
     //call axios-helper /api
-    const { status, message, user } = await loginAdmin(formData);
 
-    if (status === "success") {
-      dispatch(requestSuccess(user)) && toast[status](message);
-    }
+    const pendingResp = loginAdmin(formData);
+    toast.promise(pendingResp, { pending: "Please wait ...." });
+
+    const { status, message, user } = await pendingResp;
+    toast[status](message);
+    
+    status === "success"
+      ? dispatch(requestSuccess(user))
+      : dispatch(requestSuccess({}));
+
   } catch (error) {
     return {
       status: "error",

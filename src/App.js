@@ -11,9 +11,11 @@ function App() {
     <div className="">
       <Browser>
         <Routes>
+          {/* public router */}
           <Route path="/" element={<LoginPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/register" element={<RegisterPage />} />
+          {/* private router */}
           <Route path="/verify" element={<NewAccountVerification />} />
         </Routes>
       </Browser>
