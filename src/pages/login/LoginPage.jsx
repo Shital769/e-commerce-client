@@ -1,12 +1,20 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Footer } from "../layout/Footer";
 import { Header } from "../layout/Header";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
+import { loginAction } from "./authAction";
+import { Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const emailRef = useRef("");
   const passRef = useRef("");
+  //calling updated state from store connected with authSlice
+  const { isLoading, user } = useSelector((state) => state.user);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -16,9 +24,16 @@ export const LoginPage = () => {
       password: passRef.current.value,
     };
 
-    //call the axios helper to call the api
-    console.log(formDta);
+    //dispathch login action to call api
+    if (!formDta.email || !formDta.password) {
+      return alert("Please fill in the both fields!");
+    }
+    dispatch(loginAction(formDta));
   };
+
+  useEffect(() => {
+    user?._id && navigate("/dashboard");
+  }, [user, navigate]);
 
   return (
     <div>
@@ -49,7 +64,11 @@ export const LoginPage = () => {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            Submit
+            {isLoading ? (
+              <Spinner variant="dark" animation="border" />
+            ) : (
+              "Submit"
+            )}
           </Button>
         </Form>
       </div>
