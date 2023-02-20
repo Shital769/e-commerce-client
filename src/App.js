@@ -14,11 +14,13 @@ function App() {
         <Routes>
           {/* public router */}
           <Route path="/" element={<LoginPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="verify" element={<NewAccountVerification />} />
+
+
           {/* private router */}
-          <Route path="/verify" element={<NewAccountVerification />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="reset-password" element={<ResetPassword />} />
         </Routes>
       </Browser>
       <ToastContainer />

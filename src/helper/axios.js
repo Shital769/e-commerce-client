@@ -38,9 +38,21 @@ export const loginAdmin = async (loginData) => {
   }
 };
 
-export const resetPassword = async (resetData) => {
+export const fetchOtpRequest = async (formData) => {
   try {
-    const { data } = await axios.post(adminApi + "/reset-password", resetData);
+    const { data } = await axios.post(adminApi + "/request-otp", formData);
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
+
+export const resetPasswordRequest = async (formData) => {
+  try {
+    const { data } = await axios.post(adminApi + "/reset-password", formData);
     return data;
   } catch (error) {
     return {

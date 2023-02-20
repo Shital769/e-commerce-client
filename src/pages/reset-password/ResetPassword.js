@@ -1,12 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import Footer from "../layout/Footer";
-import Header from "../layout/Header";
-
-import { resetPassword } from "../../helper/axios";
-import { toast } from "react-toastify";
+import React, { useState } from "react";
 import RequestOTP from "../../components/request-otp/RequestOTP";
 import PasswordResetForm from "../../components/reset-password/PasswordResetForm";
+import { resetPasswordRequest, fetchOtpRequest } from "../../helper/axios";
+import Header from "../layout/Header";
+import Footer from "../layout/Footer";
+import { toast } from "react-toastify";
+import { Alert } from "react-bootstrap";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
@@ -58,6 +57,8 @@ const ResetPassword = () => {
           {response.message}
         </Alert>
       )}
+
+      <div className="main register-page p-5">{forms[showForm]}</div>
       <Footer />
     </div>
   );
