@@ -37,3 +37,15 @@ export const loginAdmin = async (loginData) => {
     };
   }
 };
+
+export const resetPassword = async (resetData) => {
+  try {
+    const { data } = await axios.post(adminApi + "/reset-password", resetData);
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
