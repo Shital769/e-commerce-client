@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { CustomInputField } from "../custom-input-field/CustomInputField";
 
-const PasswordResetForm = () => {
+const PasswordResetForm = ({ handleOnPasswordReset }) => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState("");
 
@@ -47,9 +47,9 @@ const PasswordResetForm = () => {
       required: true,
     },
     {
-      label: " confirm password",
+      label: " Confirm Password",
       type: "password",
-      name: "password",
+      name: " confirmpassword",
       placeholder: "********",
       required: true,
     },

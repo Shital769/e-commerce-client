@@ -2,62 +2,62 @@ import React from "react";
 import { useState } from "react";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
-import { CustomInputField } from "../../components/custom-input-field/CustomInputField";
-import { Button, Container, Form } from "react-bootstrap";
+
 import { resetPassword } from "../../helper/axios";
 import { toast } from "react-toastify";
+import RequestOTP from "../../components/request-otp/RequestOTP";
+import PasswordResetForm from "../../components/reset-password/PasswordResetForm";
 
 const ResetPassword = () => {
-  const [ form, setForm ] = useState({});
+  const [email, setEmail] = useState("");
+  const [showForm, setShowForm] = useState({});
+  const [response, setResponse] = useState({});
 
   const handleOnChange = (e) => {
-    const { name, value } = e.target;
-
-    setForm({
-      ...form,
-      [name]: value,
-    });
-    console.log(setForm);
+    const { value } = e.target;
+    setEmail(value);
   };
-
-  const handleOnSubmit = async (e) => {
+  const handleOnOtpRequest = async (e) => {
     e.preventDefault();
 
-    const { status, message } = await resetPassword(form);
+    const { status, message } = await fetchOtpRequest({ email });
 
     toast[status](message);
+    setResponse({ status, message });
+    status === "success" && setShowForm("reset");
   };
 
-  const inputes = [
-    {
-      label: "Email Address",
-      type: "email",
-      name: "email",
-      placeholder: "Sam@gmail.com",
-      required: true,
-    },
-  ];
+  const handleOnPasswordReset = async (data) => {
+    console.log("sending password to reset", data);
+    const { confirmPassword, ...rest } = data;
+    if (rest.password !== confirmPassword) {
+      return toast.error("Password do not match");
+    }
+    const { status, message } = await resetPasswordRequest({ ...rest, email });
+    console.log(status, message);
+    toast[status](message);
+    setResponse({ status, message });
+  };
+
+  const forms = {
+    otp: (
+      <RequestOTP
+        handleOnChange={handleOnChange}
+        handleOnOtpRequest={handleOnOtpRequest}
+      />
+    ),
+
+    reset: <PasswordResetForm handleOnPasswordReset={handleOnPasswordReset} />,
+  };
+
   return (
     <div>
       <Header />
-
-      <div className="main reset-password p-5">
-        <Container className="m-3">
-          <Form
-            onSubmit={handleOnSubmit}
-            className="border p-4 rounded shadow-lg"
-          >
-            {inputes.map((item, i) => (
-              <CustomInputField key={i} {...item} onChange={handleOnChange} />
-            ))}
-
-            <Button variant="primary" type="submit">
-              Email me a recovery link!
-            </Button>
-          </Form>
-        </Container>
-      </div>
-
+      {response.message && (
+        <Alert variant={response.status === "success" ? "success" : "danger"}>
+          {response.message}
+        </Alert>
+      )}
       <Footer />
     </div>
   );
