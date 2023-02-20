@@ -4,6 +4,7 @@ import { NewAccountVerification } from "./pages/verify/NewAccountVerification";
 import { BrowserRouter as Browser, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Dashboard from "./pages/dashboard/Dashboard";
+import ResetPassword from "./pages/reset-password/ResetPassword";
 import "./App.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           {/* private router */}
           <Route path="/verify" element={<NewAccountVerification />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </Browser>
       <ToastContainer />

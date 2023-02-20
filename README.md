@@ -10,7 +10,7 @@ So,follow the steps to build a password reset system:
 
 1. FE: Show the email input form and let user submit that to api.
 2. BE: Get the data in the api and check if user exist in our db associated with that email.
-3. BE: If wer have no user found, send error message saying that user not found, that completes transaction.
+3. BE: If we have no user found, send error message saying that user not found, that completes transaction.
 4. BE: If user found, generate a random 6 digits number and store in a session table.
 5. BE: Send that randomly generated 6 digit number to the user email address.
 6. BE: At the same time send response to frontend saying OTP has been sent to their email.

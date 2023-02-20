@@ -1,4 +1,4 @@
-.main {
+.main  {
   min-height: 80vh;
 }
 
@@ -28,4 +28,10 @@
 .side-bar ul li{
 list-style-type: none;
 margin-bottom: 2rem;
+}
+
+.reset-password form {
+  background: #acccee;
+  text-align: center;
+  font-size: large;
 }
