@@ -8,6 +8,7 @@ const PasswordResetForm = ({ handleOnPasswordReset }) => {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
 
     if (name === "password") {
       setError("");
@@ -18,17 +19,19 @@ const PasswordResetForm = ({ handleOnPasswordReset }) => {
       !/[0-9]/.test(value) && setError("Number is required");
       !/[A-Z]/.test(value) && setError("Uppercase letter is required");
       !/[a-z]/.test(value) && setError("Lowercase letter is required");
-
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
     }
+
+    //calling data from form
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    handleOnPasswordReset(formData);
+    console.log(formData);
+     handleOnPasswordReset(formData);
   };
 
   const inputes = [
@@ -40,7 +43,7 @@ const PasswordResetForm = ({ handleOnPasswordReset }) => {
       required: true,
     },
     {
-      label: "password",
+      label: "Password",
       type: "password",
       name: "password",
       placeholder: "********",
@@ -49,11 +52,13 @@ const PasswordResetForm = ({ handleOnPasswordReset }) => {
     {
       label: " Confirm Password",
       type: "password",
-      name: " confirmpassword",
+      name: "confirmPassword",
       placeholder: "********",
       required: true,
     },
   ];
+
+  // console.log(formData);
   return (
     <div>
       <Form onSubmit={handleOnSubmit} className="border p-4 rounded shadow-lg">
@@ -65,10 +70,10 @@ const PasswordResetForm = ({ handleOnPasswordReset }) => {
         ))}
 
         <Form.Group className="mb-3" controlId="formBAsicEmail">
-          <Form.text>
+          <Form.Text>
             Your password must have at least 6 character long and one uppercasae
             and lower case.
-          </Form.text>
+          </Form.Text>
         </Form.Group>
 
         <div className="text-danger mt-3 fw-bolder">{error}</div>

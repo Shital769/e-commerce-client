@@ -10,8 +10,9 @@ const RequestOTP = ({ handleOnChange, handleOnOtpRequest }) => {
       >
         <h3 className="text-center">Request OTP! </h3>
         <hr className="mb-5" />
-
+        <p>OTP will be sent to your email</p>
         <Form.Group className="mb-3" controlId="formBAsicEmail">
+          <Form.Label>Email address</Form.Label>
           <Form.Control
             onChange={handleOnChange}
             type="email"

@@ -2,9 +2,13 @@ import axios from "axios";
 const rootUrl = "http://localhost:8000/api/v1";
 const adminApi = rootUrl + "/admin";
 
-export const postNewAdmin = async (data) => {
+export const fetchOtpProcessor = async ({ method, url, data }) => {
   try {
-    const res = await axios.post(adminApi + "/register", data);
+    const res = await axios({
+      method,
+      url,
+      data,
+    });
     return res.data;
   } catch (error) {
     return {
@@ -12,52 +16,53 @@ export const postNewAdmin = async (data) => {
       message: error.message,
     };
   }
+};
+export const postNewAdmin = async (data) => {
+  const url = adminApi + "/register";
+  const obj = {
+    method: "post",
+    url,
+    data,
+  };
+  return fetchOtpProcessor(obj);
 };
 
 export const postEmailVerification = async (data) => {
-  try {
-    const res = await axios.post(adminApi + "/verify", data);
-    return res.data;
-  } catch (error) {
-    return {
-      status: "error",
-      message: error.message,
-    };
-  }
+  const url = adminApi + "/verify";
+  const obj = {
+    method: "post",
+    url,
+    data,
+  };
+  return fetchOtpProcessor(obj);
 };
 
 export const loginAdmin = async (loginData) => {
-  try {
-    const { data } = await axios.post(adminApi + "/login", loginData);
-    return data;
-  } catch (error) {
-    return {
-      status: "error",
-      message: error.message,
-    };
-  }
+  const url = adminApi + "/login";
+  const obj = {
+    method: "post",
+    url,
+    data: loginData,
+  };
+  return fetchOtpProcessor(obj);
 };
 
 export const fetchOtpRequest = async (formData) => {
-  try {
-    const { data } = await axios.post(adminApi + "/request-otp", formData);
-    return data;
-  } catch (error) {
-    return {
-      status: "error",
-      message: error.message,
-    };
-  }
+  const url = adminApi + "/request-otp";
+  const obj = {
+    method: "post",
+    url,
+    data: formData,
+  };
+  return fetchOtpProcessor(obj);
 };
 
 export const resetPasswordRequest = async (formData) => {
-  try {
-    const { data } = await axios.post(adminApi + "/reset-password", formData);
-    return data;
-  } catch (error) {
-    return {
-      status: "error",
-      message: error.message,
-    };
-  }
+  const url = adminApi + "/reset-password";
+  const obj = {
+    method: "patch",
+    url,
+    data: formData,
+  };
+  return fetchOtpProcessor(obj);
 };
