@@ -9,7 +9,7 @@ import { Alert } from "react-bootstrap";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
-  const [showForm, setShowForm] = useState({});
+  const [showForm, setShowForm] = useState("otp");
   const [response, setResponse] = useState({});
 
   const handleOnChange = (e) => {
@@ -20,7 +20,7 @@ const ResetPassword = () => {
     e.preventDefault();
 
     const { status, message } = await fetchOtpRequest({ email });
-
+    console.log(status);
     toast[status](message);
     setResponse({ status, message });
     status === "success" && setShowForm("reset");
@@ -29,6 +29,7 @@ const ResetPassword = () => {
   const handleOnPasswordReset = async (data) => {
     console.log("sending password to reset", data);
     const { confirmPassword, ...rest } = data;
+    console.log(confirmPassword);
     if (rest.password !== confirmPassword) {
       return toast.error("Password do not match");
     }
@@ -57,7 +58,6 @@ const ResetPassword = () => {
           {response.message}
         </Alert>
       )}
-
       <div className="main register-page p-5">{forms[showForm]}</div>
       <Footer />
     </div>
