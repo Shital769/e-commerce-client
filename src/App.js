@@ -5,6 +5,7 @@ import { BrowserRouter as Browser, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ResetPassword from "./pages/reset-password/ResetPassword";
+import Category from "./pages/category/Category";
 import "./App.css";
 
 function App() {
@@ -19,8 +20,9 @@ function App() {
 
           {/* private router */}
 
-          <Route path="dashboard" element={<Dashboard />} />
           <Route path="register" element={<RegisterPage />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="category" element={<Category />} />
         </Routes>
       </Browser>
       <ToastContainer />
