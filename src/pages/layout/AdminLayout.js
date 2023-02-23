@@ -29,4 +29,3 @@ export const AdminLayout = ({ children }) => {
   );
 };
 
-export default AdminLayout;

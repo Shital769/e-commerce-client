@@ -1,14 +1,14 @@
 import { toast } from "react-toastify";
 import {
-  deleleCategory,
+  deleleCategories,
   fetchCategory,
   postCategory,
-  updateCategory,
+  updateCategories,
 } from "../../helper/axios";
 
 import { setCategories } from "./CategorySlice";
 
-export const fetchCategories = () => async (dispatch) => {
+export const fetchCats = () => async (dispatch) => {
   const { status, categories } = await fetchCategory();
   console.log(categories);
 
@@ -25,10 +25,10 @@ export const postNewCategory = (data) => async (dispatch) => {
   const { status, message } = await resultPending;
   toast[status](message);
 
-  status === "success" && dispatch(fetchCategories());
+  status === "success" && dispatch(fetchCats());
 };
 
-export const deleleCategories = (_id) => async (dispatch) => {
+export const deleleCat = (_id) => async (dispatch) => {
   const resultPending = deleleCategories(_id);
 
   toast.promise(resultPending, {
@@ -39,10 +39,10 @@ export const deleleCategories = (_id) => async (dispatch) => {
 
   toast[status](message);
 
-  status === "success" && dispatch(fetchCategories());
+  status === "success" && dispatch(fetchCats());
 };
 
-export const updateCategories = (data) => async (dispatch) => {
+export const updateCat = (data) => async (dispatch) => {
   const resultPending = updateCategories(data);
 
   toast.promise(resultPending, {
@@ -52,5 +52,5 @@ export const updateCategories = (data) => async (dispatch) => {
   const { status, message } = await resultPending;
 
   toast[status](message);
-  status === "success" && dispatch(fetchCategories());
+  status === "success" && dispatch(fetchCats());
 };

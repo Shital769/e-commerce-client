@@ -90,7 +90,7 @@ export const fetchCategory = async () => {
 };
 
 //delete category
-export const deleleCategory = async (_id) => {
+export const deleleCategories = async (_id) => {
   const url = categoryApi + "/" + _id;
   const obj = {
     method: "delete",
@@ -100,7 +100,7 @@ export const deleleCategory = async (_id) => {
 };
 
 //update category
-export const updateCategory = async (data) => {
+export const updateCategories = async (data) => {
   const url = categoryApi;
   const obj = {
     method: "put",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { postNewCategory } from "../../pages/category/categoryAction";
+import { postNewCategory } from "../../pages/category/CategoryAction";
 
 export const AddNewCatFrm = () => {
   const dispatch = useDispatch();

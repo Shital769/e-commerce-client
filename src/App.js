@@ -1,8 +1,8 @@
+import { BrowserRouter as Browser, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { LoginPage } from "./pages/login/LoginPage";
 import { RegisterPage } from "./pages/register/RegisterPage";
 import { NewAccountVerification } from "./pages/verify/NewAccountVerification";
-import { BrowserRouter as Browser, Routes, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ResetPassword from "./pages/reset-password/ResetPassword";
 import Category from "./pages/category/Category";

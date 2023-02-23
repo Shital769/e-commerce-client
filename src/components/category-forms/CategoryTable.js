@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import Table from "react-bootstrap";
+import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deleleCategory,
-  fetchCategories,
+  deleleCat,
+  fetchCats,
 } from "../../pages/category/CategoryAction";
 import { setShowModal } from "../../system/systemSlice";
 import CustomModal from "../custom-modal/CustomModal";
@@ -18,12 +18,12 @@ const CategoryTable = () => {
   const [selectedCategory, setSelectedCategory] = useState({});
 
   useEffect(() => {
-    dispatch(fetchCategories());
+    dispatch(fetchCats());
   }, [dispatch]);
 
   const handleOnDelete = (_id) => {
     if (window.confirm("Are you sure you want to delete this category?")) {
-      dispatch(deleleCategory(_id));
+      dispatch(deleleCat(_id));
     }
   };
 

@@ -21,3 +21,5 @@ const Category = () => {
     </AdminLayout>
   );
 };
+
+export default Category;

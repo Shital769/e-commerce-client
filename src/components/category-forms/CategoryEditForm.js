@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Row, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { updateCategory } from "../../pages/category/CategoryAction";
+import { updateCat } from "../../pages/category/CategoryAction";
 
 const CategoryEditForm = ({ selectedCategory }) => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const CategoryEditForm = ({ selectedCategory }) => {
 
     const { _id, name, status } = formDta;
 
-    dispatch(updateCategory({ _id, name, status }));
+    dispatch(updateCat({ _id, name, status }));
   };
 
   return (
