@@ -5,6 +5,7 @@ import { BrowserRouter as Browser, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ResetPassword from "./pages/reset-password/ResetPassword";
+import Category from "./pages/category/Category";
 import "./App.css";
 
 function App() {
@@ -15,12 +16,12 @@ function App() {
           {/* public router */}
           <Route path="/" element={<LoginPage />} />
           <Route path="verify" element={<NewAccountVerification />} />
-
+          <Route path="reset-password" element={<ResetPassword />} />
 
           {/* private router */}
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="register" element={<RegisterPage />} />
-          <Route path="reset-password" element={<ResetPassword />} />
+          <Routes path="category" element={<Category />} />
         </Routes>
       </Browser>
       <ToastContainer />

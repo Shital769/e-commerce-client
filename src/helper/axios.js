@@ -109,3 +109,6 @@ export const updateCategory = async (data) => {
   };
   return fetchProcesser(obj);
 };
+
+
+// have to fix the update and delete category
