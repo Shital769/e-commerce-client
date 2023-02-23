@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import Table from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  deleleCategory,
+  fetchCategories,
+} from "../../pages/category/CategoryAction";
+import { setShowModal } from "../../system/systemSlice";
+import CustomModal from "../custom-modal/CustomModal";
+import CategoryEditForm from "./CategoryEditForm";
 
 const CategoryTable = () => {
   const dispatch = useDispatch();
@@ -27,7 +36,9 @@ const CategoryTable = () => {
     <div className="mt-5">
       <div>{categories.length} categories found!</div>
 
-      {/* have to add custom modal and edit categoryv form */}
+      <CustomModal show={false} title="Update Category">
+        <CategoryEditForm selectedCategory={selectedCategory} />
+      </CustomModal>
 
       <Table striped bordered hover>
         <thead>
@@ -40,8 +51,33 @@ const CategoryTable = () => {
           </tr>
         </thead>
         <tbody>
-          {/* do table body section
-           */}
+          {categories?.length > 0 &&
+            categories.map((item, i) => (
+              <tr key={item?._id}>
+                <td>{i + 1}</td>
+                <td
+                  className={`text-${
+                    item.status === "active" ? "success" : "danger"
+                  }`}
+                >
+                  {item.status}
+                </td>
+                <td>{item.name``}</td>
+                <td>{item.slug}</td>
+                <td>
+                  {" "}
+                  <Button onClick={() => handleOnEdit(item)} variant="warning">
+                    Edit
+                  </Button>
+                  <Button
+                    onClick={() => handleOnDelete(item._id)}
+                    variant="danger"
+                  >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </Table>
     </div>
