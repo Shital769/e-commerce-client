@@ -21,7 +21,7 @@ function App() {
           {/* private router */}
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="register" element={<RegisterPage />} />
-          <Routes path="category" element={<Category />} />
+          <Route path="category" element={<Category />} />
         </Routes>
       </Browser>
       <ToastContainer />
