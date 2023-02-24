@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  deleleCat,
+  deleteCat,
   fetchCats,
 } from "../../pages/category/CategoryAction";
 import { setShowModal } from "../../system/systemSlice";
@@ -23,7 +23,7 @@ const CategoryTable = () => {
 
   const handleOnDelete = (_id) => {
     if (window.confirm("Are you sure you want to delete this category?")) {
-      dispatch(deleleCat(_id));
+      dispatch(deleteCat(_id));
     }
   };
 
@@ -62,7 +62,7 @@ const CategoryTable = () => {
                 >
                   {item.status}
                 </td>
-                <td>{item.name``}</td>
+                <td>{item.name}</td>
                 <td>{item.slug}</td>
                 <td>
                   {" "}

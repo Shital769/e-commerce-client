@@ -1,7 +1,7 @@
 import axios from "axios";
 const rootUrl = "http://localhost:8000/api/v1";
 const adminApi = rootUrl + "/admin";
-const categoryApi = rootUrl + "/categories";
+const categoryApi = rootUrl + "/category";
 
 const fetchProcesser = async ({ method, url, data }) => {
   try {
@@ -90,7 +90,7 @@ export const fetchCategory = async () => {
 };
 
 //delete category
-export const deleleCategories = async (_id) => {
+export const deleteCategories = async (_id) => {
   const url = categoryApi + "/" + _id;
   const obj = {
     method: "delete",

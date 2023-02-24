@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import {
-  deleleCategories,
+  deleteCategories,
   fetchCategory,
   postCategory,
   updateCategories,
@@ -28,8 +28,8 @@ export const postNewCategory = (data) => async (dispatch) => {
   status === "success" && dispatch(fetchCats());
 };
 
-export const deleleCat = (_id) => async (dispatch) => {
-  const resultPending = deleleCategories(_id);
+export const deleteCat = (_id) => async (dispatch) => {
+  const resultPending = deleteCategories(_id);
 
   toast.promise(resultPending, {
     pending: "Please wait ...",

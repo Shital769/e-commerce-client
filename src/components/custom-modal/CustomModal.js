@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Modal } from "react-bootstrap";
+import  Modal  from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowModal } from "../../system/systemSlice";
 
