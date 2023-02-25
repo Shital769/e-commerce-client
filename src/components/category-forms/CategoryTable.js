@@ -68,7 +68,7 @@ const CategoryTable = () => {
                   {" "}
                   <Button onClick={() => handleOnEdit(item)} variant="warning">
                     Edit
-                  </Button>
+                  </Button> {" "}
                   <Button
                     onClick={() => handleOnDelete(item._id)}
                     variant="danger"
