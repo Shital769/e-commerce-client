@@ -2,6 +2,7 @@ import axios from "axios";
 const rootUrl = "http://localhost:8000/api/v1";
 const adminApi = rootUrl + "/admin";
 const categoryApi = rootUrl + "/category";
+const paymentApi = rootUrl + "/payment"
 
 const fetchProcesser = async ({ method, url, data }) => {
   try {
@@ -110,5 +111,22 @@ export const updateCategories = async (data) => {
   return fetchProcesser(obj);
 };
 
+//payment
+ export const postPayment = async (data) => {
+  const url = paymentApi + "/payment-method"
+  const obj = {
+    method: "post",
+    url,
+    data,
+  };
+  return fetchProcesser(obj);
+};
 
-// have to fix the update and delete category
+export const fetchPayment = aysnc () => {
+  const url = paymentApi;
+  const obj = {
+    method: "get",
+    url,
+  }
+  return fetchProcesser(obj)
+}
