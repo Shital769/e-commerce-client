@@ -2,7 +2,7 @@ import axios from "axios";
 const rootUrl = "http://localhost:8000/api/v1";
 const adminApi = rootUrl + "/admin";
 const categoryApi = rootUrl + "/category";
-const paymentApi = rootUrl + "/payment"
+const paymentApi = rootUrl + "/payment";
 
 const fetchProcesser = async ({ method, url, data }) => {
   try {
@@ -112,8 +112,8 @@ export const updateCategories = async (data) => {
 };
 
 //payment
- export const postPayment = async (data) => {
-  const url = paymentApi + "/payment-method"
+export const postPayment = async (data) => {
+  const url = paymentApi + "/payment-method";
   const obj = {
     method: "post",
     url,
@@ -121,12 +121,30 @@ export const updateCategories = async (data) => {
   };
   return fetchProcesser(obj);
 };
-
-export const fetchPayment = aysnc () => {
+export const fetchPayment = async () => {
   const url = paymentApi;
   const obj = {
     method: "get",
     url,
-  }
-  return fetchProcesser(obj)
-}
+  };
+  return fetchProcesser(obj);
+};
+
+export const deletePayment = async (_id) => {
+  const url = paymentApi + "/" + _id;
+  const obj = {
+    method: "delete",
+    url,
+  };
+  return fetchProcesser(obj);
+};
+
+export const updatePayment = async (data) => {
+  const url = paymentApi;
+  const obj = {
+    method: "put",
+    url,
+    data,
+  };
+  return fetchProcesser(obj);
+};
