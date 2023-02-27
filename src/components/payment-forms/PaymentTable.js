@@ -14,7 +14,7 @@ const PaymentTable = () => {
   const dispatch = useDispatch();
   const { payments } = useSelector((state) => state.payments);
 
-  // const [selectedPayment, setSelectedPayment] = useState({});
+  const [selectedPayment, setSelectedPayment] = useState({});
 
   useEffect(() => {
     dispatch(fetchPayments());
@@ -28,8 +28,8 @@ const PaymentTable = () => {
   return (
     <div className="mt-5">
       <div>{payments.length} products found!</div>
-      <CustomModal>
-        <PaymentForm />
+      <CustomModal show = {false} title="Update Payments" >
+        <PaymentForm selectedPayment={selectedPayment} />
       </CustomModal>
 
       <Table striped bordered hover>
