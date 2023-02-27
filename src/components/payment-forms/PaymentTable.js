@@ -1,19 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import PaymentForm from "./PaymentForm";
+import CustomModal from "../../components/custom-modal/CustomModal"
+import {
+  deletePayment,
+  fetchPayments,
+} from "../../pages/payment/PaymentAction";
+
 
 const PaymentTable = () => {
+  const dispatch = useDispatch();
   const { payments } = useSelector((state) => state.payments);
 
-const handleOnDelete = (_id) => {
-    if(window.confirm("Are you sure you want to delete this payment? ")) {
-        
+  // const [selectedPayment, setSelectedPayment] = useState({});
+
+  useEffect(() => {
+    dispatch(fetchPayments());
+  }, [dispatch]);
+
+  const handleOnDelete = (_id) => {
+    if (window.confirm("Are you sure you want to delete this payment? ")) {
+      dispatchEvent(deletePayment(_id));
     }
-}  
+  };
   return (
     <div className="mt-5">
       <div>{payments.length} products found!</div>
+      <CustomModal>
+        <PaymentForm />
+      </CustomModal>
 
       <Table striped bordered hover>
         <thead>
