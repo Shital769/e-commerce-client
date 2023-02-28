@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
-import PaymentForm from "./PaymentForm";
+import EditPaymentForm from "./EditPaymentForm";
 import CustomModal from "../../components/custom-modal/CustomModal"
 import {
   deletePayment,
   fetchPayments,
 } from "../../pages/payment/PaymentAction";
+import { setPayments } from "../../pages/payment/PaymentSlice";
+
 
 
 const PaymentTable = () => {
@@ -25,11 +27,16 @@ const PaymentTable = () => {
       dispatchEvent(deletePayment(_id));
     }
   };
+
+  const handleOnEdit = (item) => {
+    setSelectedPayment(item);
+    dispatch(setPayments(true));
+  };
   return (
     <div className="mt-5">
       <div>{payments.length} products found!</div>
       <CustomModal show = {false} title="Update Payments" >
-        <PaymentForm selectedPayment={selectedPayment} />
+        <EditPaymentForm selectedPayment={selectedPayment} />
       </CustomModal>
 
       <Table striped bordered hover>
@@ -48,7 +55,9 @@ const PaymentTable = () => {
                 <td>{i + 1}</td>
                 <td>{item.name}</td>
                 <td>{item.status}</td>
-                <td>
+                <td> <Button onClick={() => handleOnEdit(item)} variant="warning">
+                    Edit
+                  </Button>{" "}
                   <Button
                     onClick={() => handleOnDelete(item._id)}
                     variant="danger"

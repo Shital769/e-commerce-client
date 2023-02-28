@@ -1,9 +1,9 @@
 import { toast } from "react-toastify";
 import {
-  deletePayment,
+  deletePayments,
   fetchPayment,
   postPayment,
-  updatePayment,
+  updatePayments,
 } from "../../helper/axios";
 import { setPayments } from "./PaymentSlice";
 
@@ -29,7 +29,7 @@ export const postNewPayment = (data) => async (dispatch) => {
 };
 
 export const deletePayment = (_id) => async (dispatch) => {
-  const resultPending = deletePayment(_id);
+  const resultPending = deletePayments(_id);
 
   toast.promise(resultPending, {
     pending: "please wait...",
@@ -43,7 +43,7 @@ export const deletePayment = (_id) => async (dispatch) => {
 };
 
 export const updatePayment = (data) => async (dispatch) => {
-  const resultPending = updatePayment(data);
+  const resultPending = updatePayments(data);
 
   toast.promise(resultPending, {
     pending: "please wait...",

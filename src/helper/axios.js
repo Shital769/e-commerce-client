@@ -130,7 +130,7 @@ export const fetchPayment = async () => {
   return fetchProcesser(obj);
 };
 
-export const deletePayment = async (_id) => {
+export const deletePayments = async (_id) => {
   const url = paymentApi + "/" + _id;
   const obj = {
     method: "delete",
@@ -139,7 +139,7 @@ export const deletePayment = async (_id) => {
   return fetchProcesser(obj);
 };
 
-export const updatePayment = async (data) => {
+export const updatePayments = async (data) => {
   const url = paymentApi;
   const obj = {
     method: "put",

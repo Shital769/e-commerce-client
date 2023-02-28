@@ -1,12 +1,22 @@
 import React from "react";
+import AddNewPayment from "../../components/payment-forms/AddNewPayment";
+import PaymentTable from "../../components/payment-forms/PaymentTable";
 import { AdminLayout } from "../layout/AdminLayout";
 
-import PaymentForm from "../../components/payment-forms/PaymentForm";
+
+
 
 const PaymentMethodPage = () => {
   return (
     <AdminLayout>
-      <PaymentForm />
+      <div className="mt-3">
+        <h3>Payment Management</h3>
+        <hr />
+      </div>
+      <AddNewPayment />
+
+      <PaymentTable />
+
     </AdminLayout>
   );
 };
