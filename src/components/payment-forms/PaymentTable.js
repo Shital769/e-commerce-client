@@ -3,19 +3,20 @@ import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
 import EditPaymentForm from "./EditPaymentForm";
-import CustomModal from "../../components/custom-modal/CustomModal"
+import CustomModal from "../../components/custom-modal/CustomModal";
 import {
   deletePayment,
   fetchPayments,
 } from "../../pages/payment/PaymentAction";
-import { setPayments } from "../../pages/payment/PaymentSlice";
-
-
+import { setShowModal } from "../../system/systemSlice";
 
 const PaymentTable = () => {
   const dispatch = useDispatch();
-  const { payments } = useSelector((state) => state.payments);
 
+  const payments = useSelector((state) => state.payment);
+
+  const [showPayments, setShowPayments] = useState([]);
+  
   const [selectedPayment, setSelectedPayment] = useState({});
 
   useEffect(() => {
@@ -24,18 +25,18 @@ const PaymentTable = () => {
 
   const handleOnDelete = (_id) => {
     if (window.confirm("Are you sure you want to delete this payment? ")) {
-      dispatchEvent(deletePayment(_id));
+      dispatch(deletePayment(_id));
     }
   };
 
   const handleOnEdit = (item) => {
     setSelectedPayment(item);
-    dispatch(setPayments(true));
+    dispatch(setShowModal(true));
   };
   return (
     <div className="mt-5">
-      <div>{payments.length} products found!</div>
-      <CustomModal show = {false} title="Update Payments" >
+      <div>{payments?.length} payments found!</div>
+      <CustomModal show={false} title="Update Payments">
         <EditPaymentForm selectedPayment={selectedPayment} />
       </CustomModal>
 
@@ -43,9 +44,10 @@ const PaymentTable = () => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Payment Method</th>
+            <th>Status</th>
             <th>Name</th>
-            <th>status</th>
+            <th>Slug</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -53,9 +55,18 @@ const PaymentTable = () => {
             payments.map((item, i) => (
               <tr key={item?._id}>
                 <td>{i + 1}</td>
+                <td
+                  className={`text-${
+                    item.status === "active" ? "success" : "danger"
+                  }`}
+                >
+                  {item.status}
+                </td>
                 <td>{item.name}</td>
-                <td>{item.status}</td>
-                <td> <Button onClick={() => handleOnEdit(item)} variant="warning">
+                <td>{item.slug}</td>
+                <td>
+                  {" "}
+                  <Button onClick={() => handleOnEdit(item)} variant="warning">
                     Edit
                   </Button>{" "}
                   <Button

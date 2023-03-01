@@ -20,7 +20,7 @@ const EditPaymentForm = ({ selectedPayment }) => {
       [name]: value,
     });
   };
-
+  
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
@@ -46,14 +46,14 @@ const EditPaymentForm = ({ selectedPayment }) => {
               >
                 Inactive
               </option>
-              <option value="inactive" selected={formData?.status === "active"}>
+              <option value="active" selected={formData?.status === "active"}>
                 Active
               </option>
             </Form.Select>
           </Col>
           <Col>
             <Form.Control
-              placeholder="payment description"
+              placeholder="payment name"
               name="name"
               onChange={handleOnChange}
               required

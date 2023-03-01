@@ -1,4 +1,3 @@
-import React from "react";
 import AddNewPayment from "../../components/payment-forms/AddNewPayment";
 import PaymentTable from "../../components/payment-forms/PaymentTable";
 import { AdminLayout } from "../layout/AdminLayout";

@@ -39,7 +39,7 @@ export const deleteCat = (_id) => async (dispatch) => {
 
   toast[status](message);
 
-  status === "success" && dispatch(fetchCats());
+status === "success" && dispatch(fetchCats());
 };
 
 export const updateCat = (data) => async (dispatch) => {

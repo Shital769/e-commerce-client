@@ -114,6 +114,7 @@ export const updateCategories = async (data) => {
 //payment
 export const postPayment = async (data) => {
   const url = paymentApi + "/payment-method";
+  // const url = paymentApi;
   const obj = {
     method: "post",
     url,

@@ -113,7 +113,7 @@ const CategoryTable = () => {
                 <td>
                   <Form.Check
                     onChange={handleOnSwitch}
-                    type="switch"
+                    type="switch" 
                     checked={item.status === "active"}
                     value={item._id + "|" + item.name}
                   />
