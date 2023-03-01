@@ -15,8 +15,6 @@ const PaymentTable = () => {
 
   const payments = useSelector((state) => state.payment);
 
-  const [showPayments, setShowPayments] = useState([]);
-  
   const [selectedPayment, setSelectedPayment] = useState({});
 
   useEffect(() => {
