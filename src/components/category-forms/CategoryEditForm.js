@@ -43,7 +43,7 @@ const CategoryEditForm = ({ selectedCategory }) => {
               <option value="inactive" selected={formDta.status === "inactive"}>
                 Inactive
               </option>
-              <option value="inactive" selected={formDta.status === "active"}>
+              <option value="active" selected={formDta.status === "active"}>
                 Active
               </option>
             </Form.Select>

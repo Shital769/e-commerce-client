@@ -3,7 +3,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { postNewCategory } from "../../pages/category/CategoryAction";
 
-export const AddNewCatFrm = () => {
+export const AddNewCategoryForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 

@@ -83,7 +83,7 @@ const CategoryTable = () => {
       <div className="d-flex justify-content-between mb-2">
         <div>{showCategories.length} categories found!</div>
         <div className="d-flex align-items-center">
-          <label htmlFor="search">Search: </label>
+          <label>Search: </label>
           <Form.Control
             onChange={handleOnChange}
             placeholder="Search by name"

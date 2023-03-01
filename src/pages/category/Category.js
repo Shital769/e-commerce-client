@@ -1,4 +1,4 @@
-import { AddNewCatFrm } from "../../components/category-forms/AddNewCateforyForm";
+import { AddNewCategoryForm } from "../../components/category-forms/AddNewCategoryForm";
 
 import CategoryTable from "../../components/category-forms/CategoryTable";
 
@@ -13,7 +13,7 @@ const Category = () => {
       </div>
       <div>
         {/* form */}
-        <AddNewCatFrm />
+        <AddNewCategoryForm />
 
         {/* table */}
         <CategoryTable />

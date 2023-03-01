@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   return (
     <div className="sidebar-menu ">
+      <div className="mt-5">
+        <div className="text-center fe-bolder">Admin Menu</div>
+      </div>
+      <hr />
       <ul>
         <li>
           <Link to="/dashboard">
