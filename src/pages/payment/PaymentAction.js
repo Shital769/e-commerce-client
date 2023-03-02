@@ -42,8 +42,8 @@ export const deletePayment = (_id) => async (dispatch) => {
   status === "success" && dispatch(fetchPayments());
 };
 
-export const updatePayment = (data) => async (dispatch) => {
-  const resultPending = updatePayments(data);
+export const updatePayment = (_id) => async (dispatch) => {
+  const resultPending = updatePayments(_id);
 
   toast.promise(resultPending, {
     pending: "please wait...",

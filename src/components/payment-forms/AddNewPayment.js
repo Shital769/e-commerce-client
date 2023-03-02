@@ -19,12 +19,26 @@ const AddNewPayment = () => {
       >
         <Row>
           <Col>
-              <Form.Control
-                placeholder="Payment name"
-                name="name"
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
+            <div className="d-flex">
+              <div>
+                <Form.Control
+                  placeholder="Payment name"
+                  name="name"
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="ms-5">
+                <Form.Control
+                  placeholder="Payment method name"
+                  name="methodname"
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+                 
+              </div>
+            </div>
           </Col>
           <Col>
             <Button type="submit" variant="warning">
