@@ -8,16 +8,19 @@ import {
   updateCat,
 } from "../../pages/category/CategoryAction";
 import { setShowModal } from "../../system/systemSlice";
-import CustomModal from "../custom-modal/CustomModal";
-import CategoryEditForm from "./CategoryEditForm";
+import Pagination from "react-bootstrap/Pagination";
+// import CustomModal from "../custom-modal/CustomModal";
+// import CategoryEditForm from "./CategoryEditForm";
+
+const itemsPerTable = 5;
 
 const CategoryTable = () => {
   const dispatch = useDispatch();
 
   const { categories } = useSelector((state) => state.category);
   const [showCategories, setShowCategories] = useState({});
-
   const [selectedCategory, setSelectedCategory] = useState({});
+  const [active, setActive] = useState(1);
 
   useEffect(() => {
     if (!showCategories.length) {
@@ -78,6 +81,26 @@ const CategoryTable = () => {
       setSelectedCategory({});
     }
   };
+
+  const handleOnPagination = (num) => {
+    setActive(num);
+  };
+
+  let items = [];
+  const numberOfPage = Math.ceil(showCategories.length / itemsPerTable);
+  for (let number = 1; number <= numberOfPage; number++) {
+    items.push(
+      <Pagination.Item
+        key={number}
+        active={number === active}
+        onClick={() => handleOnPagination(number)}
+      >
+        {number}
+      </Pagination.Item>
+    );
+  }
+  const startPageItem = (active - 1) * itemsPerTable;
+  const endPageItem = startPageItem + itemsPerTable;
   return (
     <div className="mt-5">
       <div className="d-flex justify-content-between mb-2">
@@ -107,58 +130,66 @@ const CategoryTable = () => {
         </thead>
         <tbody>
           {showCategories?.length > 0 &&
-            showCategories.map((item, i) => (
-              <tr key={item?._id}>
-                <td>{i + 1}</td>
-                <td>
-                  <Form.Check
-                    onChange={handleOnSwitch}
-                    type="switch" 
-                    checked={item.status === "active"}
-                    value={item._id + "|" + item.name}
-                  />
-                </td>
-                <td>
-                  {selectedCategory._id === item._id ? (
-                    <Form.Control
-                      value={selectedCategory.name}
-                      onChange={onCategoryNameChange}
-                    />
-                  ) : (
-                    item.name
-                  )}
-                </td>
-                <td>{item.slug}</td>
-                {selectedCategory._id === item._id ? (
-                  <td>
-                    <Button onClick={handleOnSave} variant="success">
-                      Save
-                    </Button>
-                    <Button onClick={() => handleOnEdit({})} variant="info">
-                      Cancel
-                    </Button>
-                  </td>
-                ) : (
-                  <td>
-                    {" "}
-                    <Button
-                      onClick={() => handleOnEdit(item)}
-                      variant="warning"
-                    >
-                      Edit
-                    </Button>{" "}
-                    <Button
-                      onClick={() => handleOnDelete(item._id)}
-                      variant="danger"
-                    >
-                      Delete
-                    </Button>
-                  </td>
-                )}
-              </tr>
-            ))}
+            showCategories.map(
+              (item, i) =>
+                i >= startPageItem &&
+                i < endPageItem && (
+                  <tr key={item?._id}>
+                    <td>{i + 1}</td>
+                    <td>
+                      <Form.Check
+                        onChange={handleOnSwitch}
+                        type="switch"
+                        checked={item.status === "active"}
+                        value={item._id + "|" + item.name}
+                      />
+                    </td>
+                    <td>
+                      {selectedCategory._id === item._id ? (
+                        <Form.Control
+                          value={selectedCategory.name}
+                          onChange={onCategoryNameChange}
+                        />
+                      ) : (
+                        item.name
+                      )}
+                    </td>
+                    <td>{item.slug}</td>
+                    {selectedCategory._id === item._id ? (
+                      <td>
+                        <Button onClick={handleOnSave} variant="success">
+                          Save
+                        </Button>
+                        <Button onClick={() => handleOnEdit({})} variant="info">
+                          Cancel
+                        </Button>
+                      </td>
+                    ) : (
+                      <td>
+                        {" "}
+                        <Button
+                          onClick={() => handleOnEdit(item)}
+                          variant="warning"
+                        >
+                          Edit
+                        </Button>{" "}
+                        <Button
+                          onClick={() => handleOnDelete(item._id)}
+                          variant="danger"
+                        >
+                          Delete
+                        </Button>
+                      </td>
+                    )}
+                  </tr>
+                )
+            )}
         </tbody>
       </Table>
+      <div>
+        <Pagination size="sm">{items}</Pagination>
+        <br />
+      </div>
     </div>
   );
 };

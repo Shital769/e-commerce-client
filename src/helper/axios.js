@@ -40,6 +40,7 @@ export const postEmailVerification = async (data) => {
   return fetchProcesser(obj);
 };
 
+//login adminx
 export const loginAdmin = async (loginData) => {
   const url = adminApi + "/login";
   const obj = {

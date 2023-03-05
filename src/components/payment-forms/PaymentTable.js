@@ -13,7 +13,7 @@ import { setShowModal } from "../../system/systemSlice";
 const PaymentTable = () => {
   const dispatch = useDispatch();
 
-  const payments = useSelector((state) => state.payment);
+  const {payments} = useSelector((state) => state.payment);
 
   const [selectedPayment, setSelectedPayment] = useState({});
 
@@ -39,7 +39,7 @@ const PaymentTable = () => {
       </CustomModal>
 
       <Table striped bordered hover>
-        <thead>
+      <thead>
           <tr>
             <th>#</th>
             <th>Status</th>

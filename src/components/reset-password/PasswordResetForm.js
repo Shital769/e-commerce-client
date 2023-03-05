@@ -40,7 +40,7 @@ const PasswordResetForm = ({ handleOnPasswordReset }) => {
       required: true,
     },
     {
-      label: "password",
+      label: "Password",
       type: "password",
       name: "password",
       placeholder: "********",
@@ -65,10 +65,10 @@ const PasswordResetForm = ({ handleOnPasswordReset }) => {
         ))}
 
         <Form.Group className="mb-3" controlId="formBAsicEmail">
-          <Form.text>
+          <Form.Text>
             Your password must have at least 6 character long and one uppercasae
             and lower case.
-          </Form.text>
+          </Form.Text>
         </Form.Group>
 
         <div className="text-danger mt-3 fw-bolder">{error}</div>
