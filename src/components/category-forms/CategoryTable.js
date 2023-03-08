@@ -25,9 +25,10 @@ const CategoryTable = () => {
   useEffect(() => {
     if (!showCategories.length) {
       dispatch(fetchCats());
+
     }
     setShowCategories(categories);
-  }, [dispatch, categories, showCategories]);
+  }, [dispatch, categories]);
 
   const handleOnDelete = (_id) => {
     if (window.confirm("Are you sure you want to delete this category?")) {

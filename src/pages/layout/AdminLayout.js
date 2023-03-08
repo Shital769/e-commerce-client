@@ -12,10 +12,7 @@ export const AdminLayout = ({ children }) => {
         <Container fluid>
           <Row>
             <Col xs="3" className="side-bar bg-dark text-light">
-              <div className="mt-5">
-                <div className="text-center fw-bolder">Admin Menu</div>
-              </div>
-              <hr />
+              
 
               <SideBar />
             </Col>

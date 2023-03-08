@@ -1,51 +1,50 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { postNewPayment } from "../../pages/payment/PaymentAction";
+import { CustomInputField } from "../custom-input-field/CustomInputField";
 
-const AddNewPayment = () => {
+export const AddNewPayment = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
+  const [form, setForm] = useState({});
 
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(postNewPayment({ name }));
+    dispatch(postNewPayment(form));
   };
   return (
     <div>
-      <Form
-        onSubmit={handleOnSubmit}
-        className="text-center border p-4 rounded shadow-lg"
-      >
-        <Row>
-          <Col>
-            <div className="d-flex">
-              <div>
-                <Form.Control
-                  placeholder="Payment name"
-                  name="name"
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
+      <Form onSubmit={handleOnSubmit}>
+        <CustomInputField
+          onChange={handleOnChange}
+          required={true}
+          label="Name"
+          name="name"
+          placeholder="Credit card"
+        />
 
-              <div className="ms-5">
-                <Form.Control
-                  placeholder="Payment method name"
-                  name="methodname"
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-                 
-              </div>
-            </div>
-          </Col>
-          <Col>
-            <Button type="submit" variant="warning">
-              Add New Payment
-            </Button>
-          </Col>
-        </Row>
+        <CustomInputField
+          onChange={handleOnChange}
+          required={true}
+          label="Description"
+          name="description"
+          as="textarea"
+          placeholder="Please click the checkout button to process for the credit card payment"
+        />
+
+        <div className="py-3 d-grid">
+          <Button type="submit" variant="success">
+            Submit Payment Method
+          </Button>
+        </div>
       </Form>
     </div>
   );

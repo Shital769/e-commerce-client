@@ -1,71 +1,81 @@
 import React, { useEffect, useState } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { updatePayment } from "../../pages/payment/PaymentAction";
+import { CustomInputField } from "../custom-input-field/CustomInputField";
 
 const EditPaymentForm = ({ selectedPayment }) => {
   const dispatch = useDispatch();
 
-  const [formData, setFormData] = useState({});
+  const [form, setForm] = useState({});
 
   useEffect(() => {
-    setFormData(selectedPayment);
-  }, [selectedPayment]);
+    setForm(selectedPayment);
+  }, [setForm, selectedPayment]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData({
-      ...formData,
+    console.log(name, value);
+    setForm({
+      ...form,
       [name]: value,
     });
   };
-  
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    const { _id, name, status } = formData;
+    const { __v, updatedAt, createdAt, ...rest } = form;
 
-    dispatch(updatePayment({ _id, name, status }));
+    dispatch(updatePayment(rest));
   };
 
-  console.log(formData);
+  console.log(form);
   return (
     <div>
-      <Form
-        onSubmit={handleOnSubmit}
-        className="text-center border p-4 rounded shadow-lg"
-      >
-        <Row>
-          <Col>
-            <Form.Select name="status" onChange={handleOnChange} required>
-              <option value="">--status--</option>
-              <option
-                value="inactive"
-                selected={formData?.status === "inactive"}
-              >
-                Inactive
-              </option>
-              <option value="active" selected={formData?.status === "active"}>
-                Active
-              </option>
-            </Form.Select>
-          </Col>
-          <Col>
-            <Form.Control
-              placeholder="payment name"
-              name="name"
-              onChange={handleOnChange}
-              required
-              value={formData?.name}
-            />
-          </Col>
-          <Col>
-            <Button type="submit" variant="warning">
-              Update
-            </Button>
-          </Col>
-        </Row>
+      <Form onSubmit={handleOnSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Status: </Form.Label>
+          <Form.Check
+            type="radio"
+            name="status"
+            label="Active"
+            checked={form.status === "active"}
+            value="active"
+            onChange={handleOnChange}
+          />
+          <Form.Check
+            type="radio"
+            name="status"
+            label="Inactive"
+            checked={form.status === "inactive"}
+            value="inactive"
+            onChange={handleOnChange}
+          />
+        </Form.Group>
+        <CustomInputField
+          onChange={handleOnChange}
+          required={true}
+          label="Name"
+          name="name"
+          placeholder="Credit Card"
+          value={form?.name}
+        />
+
+        <CustomInputField
+          onChange={handleOnChange}
+          required={true}
+          label="Description"
+          as="textarea"
+          placeholder="Please click the checout button to process for the credit card payment"
+          value={form?.description}
+        />
+        <div className="py-3 d-grid">
+          <Button type="submit" variant="success">
+            Update Paymenth Method
+          </Button>
+        </div>
       </Form>
     </div>
   );

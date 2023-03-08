@@ -1,12 +1,14 @@
-import { toast } from "react-toastify";
 import {
   deletePayments,
   fetchPayment,
   postPayment,
   updatePayments,
 } from "../../helper/axios";
+import { toast } from "react-toastify";
 import { setPayments } from "./PaymentSlice";
+import { setShowModal } from "../../system/systemSlice";
 
+//to get payments
 export const fetchPayments = () => async (dispatch) => {
   const { status, payments } = await fetchPayment();
   console.log(payments);
@@ -25,7 +27,10 @@ export const postNewPayment = (data) => async (dispatch) => {
 
   toast[status](message);
 
-  status === "success" && dispatch(fetchPayments());
+  if (status === "success") {
+    dispatch(fetchPayments());
+    dispatch(setShowModal(false));
+  }
 };
 
 export const deletePayment = (_id) => async (dispatch) => {
@@ -39,11 +44,13 @@ export const deletePayment = (_id) => async (dispatch) => {
 
   toast[status](message);
 
-  status === "success" && dispatch(fetchPayments());
+  if (status === "success") {
+    dispatch(fetchPayments());
+  }
 };
 
-export const updatePayment = (_id) => async (dispatch) => {
-  const resultPending = updatePayments(_id);
+export const updatePayment = (data) => async (dispatch) => {
+  const resultPending = updatePayments(data);
 
   toast.promise(resultPending, {
     pending: "please wait...",
@@ -53,5 +60,9 @@ export const updatePayment = (_id) => async (dispatch) => {
 
   toast[status](message);
 
-  status === "success" && dispatch(fetchPayments());
+  if (status === "success") {
+    dispatch(fetchPayments());
+    dispatch(setShowModal(false));
+  }
 };
+//changed _id parameter to data in update payment function
