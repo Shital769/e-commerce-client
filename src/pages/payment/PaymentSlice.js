@@ -12,7 +12,7 @@ const paymentSlice = createSlice({
     setPayments: (state, { payload = [] }) => {
       state.payments = payload;
     },
-    setSelectedPayments: (state, { payload = [] }) => {
+    setSelectedPayments: (state, { payload }) => {
       state.selectedPayments = payload;
     },
   },

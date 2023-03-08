@@ -29,6 +29,7 @@ const PaymentMethodPage = () => {
         </Button>
       </div>
       {/* <AddNewPayment /> */}
+      <hr />
 
       <PaymentTable />
     </AdminLayout>

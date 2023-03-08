@@ -32,7 +32,7 @@ const PaymentTable = () => {
   };
   return (
     <div>
-      {selectedPayments?._id ? (
+      {selectedPayments._id ? (
         // <div>{payments?.length} payments found!</div>
         // customModal show={false}
         <CustomModal title="Edit payment methods">
@@ -56,16 +56,17 @@ const PaymentTable = () => {
         </thead>
         <tbody>
           {/* payments?.length > 0 && Note: This line of code was in first line of dynamic table */}
-          {payments?.map((item, i) => (
+          {payments.map((item, i) => (
             <tr key={item?._id}>
               <td>{i + 1}</td>
-              <td
+              {/* <td
                 className={`text-${
                   item.status === "active" ? "success" : "danger"
                 }`}
               >
                 {item.status}
-              </td>
+              </td> */}
+              <td>{item.status}</td>
               <td>{item.name}</td>
               <td>{item.description}</td>
               <td>

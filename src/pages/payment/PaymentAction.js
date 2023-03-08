@@ -10,10 +10,10 @@ import { setShowModal } from "../../system/systemSlice";
 
 //to get payments
 export const fetchPayments = () => async (dispatch) => {
-  const { status, payments } = await fetchPayment();
-  console.log(payments);
+  const { status, result } = await fetchPayment();
+  console.log(result);
 
-  status === "success" && dispatch(setPayments(payments));
+  status === "success" && dispatch(setPayments(result));
 };
 
 export const postNewPayment = (data) => async (dispatch) => {
@@ -24,7 +24,6 @@ export const postNewPayment = (data) => async (dispatch) => {
   });
 
   const { status, message } = await resultPending;
-
   toast[status](message);
 
   if (status === "success") {
