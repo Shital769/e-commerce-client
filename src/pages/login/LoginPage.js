@@ -71,6 +71,10 @@ export const LoginPage = () => {
               "Submit"
             )}
           </Button>
+
+          <div className="text-center p-5">
+            Forget password? <a href="/reset-password">Reset Password</a>
+          </div>
         </Form>
       </div>
 

@@ -16,7 +16,7 @@
 }
 
 .side-bar {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .side-bar a {
@@ -25,7 +25,10 @@
   font-weight: 600;
 }
 
-.side-bar ul li{
-list-style-type: none;
-margin-bottom: 2rem;
+.side-bar ul li {
+  list-style-type: none;
+  margin-bottom: 2rem;
+}
+.sidebar-menu {
+  position: fixed;
 }
