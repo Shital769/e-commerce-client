@@ -4,9 +4,9 @@ import { Header } from "../layout/Header";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { loginAction } from "./authAction";
+import { autoLogin, loginAction } from "./authAction";
 import { Spinner } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,11 @@ export const LoginPage = () => {
   const passRef = useRef("");
   //calling updated state from store connected with authSlice
   const { isLoading, user } = useSelector((state) => state.user);
+  console.log(user);
+
+  const location = useLocation();
+
+  const origin = location?.state?.from?.pathname || "/dashboard";
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -32,10 +37,10 @@ export const LoginPage = () => {
   };
 
   useEffect(() => {
-    user?._id && navigate("/dashboard");
+    user?._id ? navigate(origin) : dispatch(autoLogin());
 
     //TODO: make router private and auto login
-  }, [user, navigate]);
+  }, [user?._id, navigate, origin, dispatch]);
   return (
     <div>
       <Header />
@@ -73,7 +78,7 @@ export const LoginPage = () => {
           </Button>
 
           <div className="text-center p-5">
-            Forget password? <a href="/reset-password">Reset Password</a>
+            Forget password? <a href="/reset-password">Reset now</a>
           </div>
         </Form>
       </div>

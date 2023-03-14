@@ -1,3 +1,4 @@
+import "./App.css";
 import { BrowserRouter as Browser, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { LoginPage } from "./pages/login/LoginPage";
@@ -8,7 +9,7 @@ import ResetPassword from "./pages/reset-password/ResetPassword";
 import Category from "./pages/category/Category";
 import PaymentMethodPage from "./pages/payment/PaymentMethodPage";
 
-import "./App.css";
+import { PrivateRouter } from "./components/private-router/PrivateRouter";
 
 function App() {
   return (
@@ -21,10 +22,39 @@ function App() {
           <Route path="reset-password" element={<ResetPassword />} />
 
           {/* private router */}
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="category" element={<Category />} />
-          <Route path="payment-method" element={<PaymentMethodPage />} />
+
+          <Route
+            path="dashboard"
+            element={
+              <PrivateRouter>
+                <Dashboard />
+              </PrivateRouter>
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <PrivateRouter>
+                <RegisterPage />
+              </PrivateRouter>
+            }
+          />
+          <Route
+            path="category"
+            element={
+              <PrivateRouter>
+                <Category />
+              </PrivateRouter>
+            }
+          />
+          <Route
+            path="payment-method"
+            element={
+              <PrivateRouter>
+                <PaymentMethodPage />
+              </PrivateRouter>
+            }
+          />
         </Routes>
       </Browser>
       <ToastContainer />
