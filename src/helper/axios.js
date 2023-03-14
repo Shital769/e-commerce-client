@@ -44,6 +44,7 @@ export const postNewAdmin = async (data) => {
     method: "post",
     url,
     data,
+    isPrivate: true,
   };
   return fetchProcesser(obj);
 };
@@ -72,9 +73,9 @@ export const loginAdmin = async (loginData) => {
 export const fetchAdminProfile = async () => {
   const url = adminApi + "/user-profile";
   const obj = {
-    method: "post",
+    method: "get",
     url,
-    data: loginData,
+    isPrivate: true,
   };
   return fetchProcesser(obj);
 };
@@ -106,6 +107,7 @@ export const postCategory = async (data) => {
     method: "post",
     url,
     data,
+    isPrivate: true,
   };
   return fetchProcesser(obj);
 };
@@ -115,6 +117,7 @@ export const fetchCategory = async () => {
   const obj = {
     method: "get",
     url,
+    isPrivate: true,
   };
   return fetchProcesser(obj);
 };
@@ -125,6 +128,7 @@ export const deleteCategories = async (_id) => {
   const obj = {
     method: "delete",
     url,
+    isPrivate: true,
   };
   return fetchProcesser(obj);
 };
@@ -136,6 +140,7 @@ export const updateCategories = async (data) => {
     method: "put",
     url,
     data,
+    isPrivate: true,
   };
   return fetchProcesser(obj);
 };
@@ -148,6 +153,7 @@ export const postPayment = async (data) => {
     method: "post",
     url,
     data,
+    isPrivate: true,
   };
   return fetchProcesser(obj);
 };
@@ -156,6 +162,7 @@ export const fetchPayment = async () => {
   const obj = {
     method: "get",
     url,
+    isPrivate: true,
   };
   return fetchProcesser(obj);
 };
@@ -175,6 +182,7 @@ export const updatePayments = async (data) => {
     method: "put",
     url,
     data,
+    isPrivate: true,
   };
   return fetchProcesser(obj);
 };
