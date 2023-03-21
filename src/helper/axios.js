@@ -3,6 +3,7 @@ const rootUrl = "http://localhost:8000/api/v1";
 const adminApi = rootUrl + "/admin";
 const categoryApi = rootUrl + "/category";
 const paymentApi = rootUrl + "/payment";
+const productApi = rootUrl + "/product";
 
 const fetchProcesser = async ({ method, url, data, isPrivate, token }) => {
   try {
@@ -196,6 +197,51 @@ export const fetchNewAccessJWT = async () => {
     url,
     isPrivate: true,
     token,
+  };
+  return fetchProcesser(obj);
+};
+
+//Product APIs
+
+export const fetchProduct = async (_id) => {
+  const url = _id ? productApi + "/" + _id : productApi;
+  const obj = {
+    method: "get",
+    url,
+    isPrivate: true,
+  };
+  return fetchProcesser(obj);
+};
+
+export const postProduct = async (data) => {
+  const url = productApi;
+  const obj = {
+    method: "post",
+    url,
+    data,
+    isPrivate: true,
+  };
+  return fetchProcesser(obj);
+};
+
+export const updateProduct = async (data) => {
+  const url = productApi;
+  const obj = {
+    method: "put",
+    url,
+    data,
+    isPrivate: true,
+  };
+  return fetchProcesser(obj);
+};
+
+export const deleteProduct = async (data) => {
+  const url = productApi;
+  const obj = {
+    method: "delete",
+    url,
+    data,
+    isPrivate: true,
   };
   return fetchProcesser(obj);
 };

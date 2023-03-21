@@ -8,8 +8,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import ResetPassword from "./pages/reset-password/ResetPassword";
 import Category from "./pages/category/Category";
 import PaymentMethodPage from "./pages/payment/PaymentMethodPage";
-
 import { PrivateRouter } from "./components/private-router/PrivateRouter";
+import {Products} from "./pages/products/Products";
 
 function App() {
   return (
@@ -52,6 +52,14 @@ function App() {
             element={
               <PrivateRouter>
                 <PaymentMethodPage />
+              </PrivateRouter>
+            }
+          />
+          <Route
+            path="products"
+            element={
+              <PrivateRouter>
+                <Products />
               </PrivateRouter>
             }
           />

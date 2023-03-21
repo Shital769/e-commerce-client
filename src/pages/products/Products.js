@@ -1,7 +1,8 @@
 import React from "react";
-import {Button} from "react-bootstrap";
-import {Link} from "react-router-dom";
-import {AdminLayout} from "../layout/AdminLayout";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { ProductTable } from "../../components/custom-tables/ProductTable";
+import { AdminLayout } from "../layout/AdminLayout";
 
 export const Products = () => {
   return (

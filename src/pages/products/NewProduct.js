@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { AdminLayout } from "../layout/AdminLayout";
 import { CustomInputField } from "../../components/custom-input-field/CustomInputField";
+import { postProductAction } from "./ProductAction";
 
 export const NewProduct = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ export const NewProduct = () => {
     newImages.length &&
       [...newImages].map((item) => formDta.append("images", item));
 
-    dispatch(postProduction(formDta));
+    dispatch(postProductAction(formDta));
   };
 
   const handleOnImageUpload = (e) => {
