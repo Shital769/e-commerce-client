@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { useDispatch, useSelector } from "react-redux";
-import EditPaymentForm from "./EditPaymentForm";
-import CustomModal from "../../components/custom-modal/CustomModal";
+import EditPaymentForm from "../payment-forms/EditPaymentForm";
+import CustomModal from "../custom-modal/CustomModal";
 import {
   deletePayment,
   fetchPayments,

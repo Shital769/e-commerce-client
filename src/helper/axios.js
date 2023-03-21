@@ -70,6 +70,15 @@ export const loginAdmin = async (loginData) => {
   return fetchProcesser(obj);
 };
 
+export const fetchAdminProfile = async () => {
+  const url = adminApi + "/user-profile";
+  const obj = {
+    method: "get",
+    url,
+    isPrivate: true,
+  };
+  return fetchProcesser(obj);
+};
 export const fetchOtpRequest = async (formData) => {
   const url = adminApi + "/request-otp";
   const obj = {

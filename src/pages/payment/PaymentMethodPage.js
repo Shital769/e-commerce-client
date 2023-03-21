@@ -1,11 +1,10 @@
 import React from 'react'
 import { useDispatch } from "react-redux";
 import { Button } from 'react-bootstrap';
-// import AddNewPayment from "../../components/payment-forms/AddNewPayment";
-import PaymentTable from "../../components/payment-forms/PaymentTable";
 import { setShowModal } from "../../system/systemSlice";
 import { AdminLayout } from "../layout/AdminLayout";
 import { setSelectedPayments } from "./PaymentSlice";
+import PaymentTable from '../../components/custom-tables/PaymentTable';
 
 const PaymentMethodPage = () => {
   const dispatch = useDispatch();
