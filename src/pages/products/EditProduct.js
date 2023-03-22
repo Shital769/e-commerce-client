@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { CustomInputField } from "../../components/custom-input-field/CustomInputField";
@@ -198,9 +198,9 @@ export const EditProduct = () => {
                   />
                   <label htmlFor=""> Main Image</label>
                 </div>
-
+{/* here, substr will remove public with 6 character and takes images */}
                 <img
-                  src=""
+                  src={process.env.REACT_APP_DOMAIN + item.substr(6)}
                   alt="product"
                   key={i}
                   className="border p-2"

@@ -118,15 +118,15 @@ export const NewProduct = () => {
             <Form.Check name="status" type="switch" label="Status" />
           </Form.Group>
 
-          {inputes.map((item, i) => {
+          {inputes.map((item, i) => (
             <CustomInputField
               key={i}
               {...item}
               onChange={
-                item.name === images ? handleOnImageUpload : handleOnChange
+                item.name === "images" ? handleOnImageUpload : handleOnChange
               }
-            />;
-          })}
+            />
+          ))}
 
           <div className="d-grid">
             <Button type="submit" variant="success">

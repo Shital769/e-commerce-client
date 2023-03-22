@@ -9,7 +9,9 @@ import ResetPassword from "./pages/reset-password/ResetPassword";
 import Category from "./pages/category/Category";
 import PaymentMethodPage from "./pages/payment/PaymentMethodPage";
 import { PrivateRouter } from "./components/private-router/PrivateRouter";
-import {Products} from "./pages/products/Products";
+import { Products } from "./pages/products/Products";
+import { NewProduct } from "./pages/products/NewProduct";
+import { EditProduct } from "./pages/products/EditProduct";
 
 function App() {
   return (
@@ -60,6 +62,22 @@ function App() {
             element={
               <PrivateRouter>
                 <Products />
+              </PrivateRouter>
+            }
+          />
+          <Route
+            path="products/new"
+            element={
+              <PrivateRouter>
+                <NewProduct />
+              </PrivateRouter>
+            }
+          />
+          <Route
+            path="products/:_id"
+            element={
+              <PrivateRouter>
+                <EditProduct />
               </PrivateRouter>
             }
           />
