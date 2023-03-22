@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { CustomInputField } from "../../components/custom-input-field/CustomInputField";
 import { AdminLayout } from "../layout/AdminLayout";
 import { getSelectedProductAction, updateProductAction } from "./ProductAction";
 
@@ -82,29 +83,145 @@ export const EditProduct = () => {
     setNewImages(files);
   };
 
-  
+  const inputes = [
+    {
+      name: "name",
+      label: "Name",
+      type: "text",
+      placeholder: "Samsung Tv",
+      required: true,
+      value: formData.name,
+    },
+    {
+      name: "slug",
+      label: "Slug",
+      type: "text",
+      disabled: true,
+      required: true,
+      value: formData.slug,
+    },
+    {
+      name: "sku",
+      label: "Sku",
+      placeholder: "SAM-TV-8",
+      required: true,
+      value: formData.sku,
+    },
+    {
+      name: "qty",
+      label: "Qty",
+      type: "number",
+      placeholder: "50",
+      required: true,
+      value: formData.qty,
+    },
+    {
+      name: "price",
+      label: "Price",
+      type: "number",
+      placeholder: "500",
+      required: true,
+      value: formData.price,
+    },
+    {
+      name: "salesPrice",
+      label: "Sales Price",
+      type: "number",
+      placeholder: "400",
+      value: formData.salesPrice,
+    },
+    {
+      name: "salesStartDate",
+      label: "Sales Start Date",
+      type: "date",
+      value: formData.salesStartDate
+        ? formData.salesStartDate.substr(0, 10)
+        : null,
+    },
+    {
+      name: "salesEndDate",
+      label: "Sales End Date",
+      type: "date",
+      value: formData.salesEndDate ? formData.salesEndDate.substr(0, 10) : null,
+    },
+    {
+      name: "images",
+      label: "Images",
+      type: "file",
+      multiple: true,
+      accept: "image/*",
+    },
+  ];
 
   return (
     <AdminLayout>
       <div className="mb-3">
         <div className="py-3 fs-2">New Product</div>
 
-        <Link to="products">
+        <Link to="/products">
           {" "}
           <Button variant="secondary"> &lt; Back</Button>
         </Link>
         <hr />
 
-        <Form>
+        <Form onSubmit={handleOnSubmit}>
           <Form.Group className="mb-3">
             <Form.Check
               name="status"
               type="switch"
               label="Status"
-              checked={FormData.status === "active"}
+              checked={formData.status === "active"}
               onChange={handleOnChange}
             />
           </Form.Group>
+
+          {inputes.map((item, i) => (
+            <CustomInputField
+              key={i}
+              {...item}
+              onChange={
+                item.name === "images" ? handleOnImageUpload : handleOnChange
+              }
+            />
+          ))}
+
+          <div className="py-4 d-flex justify-content-between flex-wrap">
+            {formData?.images?.map((item, i) => (
+              <div className="d-flex flex-column">
+                <div>
+                  <input
+                    type="radio"
+                    name="mainImage"
+                    value={item}
+                    onChange={handleOnChange}
+                    checked={item === formData.mainImage}
+                  />
+                  <label htmlFor=""> Main Image</label>
+                </div>
+
+                <img
+                  src=""
+                  alt="product"
+                  key={i}
+                  className="border p-2"
+                  width="120px"
+                />
+
+                <Form.Check
+                  label="Delete"
+                  onChange={handleOnDelete}
+                  value={item}
+                  checked={imgToDelete.includes(item)}
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="d-grid">
+            <Button type="submit" variant="success">
+              Update Product
+            </Button>
+          </div>
         </Form>
       </div>
     </AdminLayout>
