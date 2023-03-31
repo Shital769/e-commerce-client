@@ -23,7 +23,7 @@ export const NewProduct = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    const formDta = new FormDta();
+    const formDta = new FormData();
 
     for (let key in formData) {
       formDta.append(key, formData[key]);
