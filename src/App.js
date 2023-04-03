@@ -22,6 +22,7 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="verify" element={<NewAccountVerification />} />
           <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="register" element={<RegisterPage />} />
 
           {/* private router */}
 
@@ -33,14 +34,14 @@ function App() {
               </PrivateRouter>
             }
           />
-          <Route
+          {/* <Route
             path="register"
             element={
               <PrivateRouter>
                 <RegisterPage />
               </PrivateRouter>
             }
-          />
+          /> */}
           <Route
             path="category"
             element={
