@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { CustomInputField } from "../../components/custom-input-field/CustomInputField";
+import { CustomSelect } from "../../components/custom-select/CustomSelect";
 import { fetchCats } from "../category/CategoryAction";
 import { AdminLayout } from "../layout/AdminLayout";
 import { getSelectedProductAction, updateProductAction } from "./ProductAction";

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Form } from "react-bootstrap";
 
-export const CustomSelect = ({ name, args, func, name, selectedCategory }) => {
+export const CustomSelect = ({ label, args, func, name, selectedCategory }) => {
   useEffect(() => {}, [selectedCategory]);
   console.log(selectedCategory);
   return (
