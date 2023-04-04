@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { CustomInputField } from "../../components/custom-input-field/CustomInputField";
+import { fetchCats } from "../category/CategoryAction";
 import { AdminLayout } from "../layout/AdminLayout";
 import { getSelectedProductAction, updateProductAction } from "./ProductAction";
 
@@ -16,11 +17,17 @@ export const EditProduct = () => {
 
   const { selectedProduct } = useSelector((state) => state.product);
 
+  const { categories } = useSelector((state) => state.category);
+
   useEffect(() => {
-    !selectedProduct._id && dispatch(getSelectedProductAction(_id));
+    dispatch(getSelectedProductAction(_id));
 
     setFormData(selectedProduct);
   }, [dispatch, _id, selectedProduct]);
+
+  useEffect(() => {
+    !categories.length && dispatch(fetchCats());
+  }, [categories.length, dispatch]);
 
   const handleOnChange = (e) => {
     let { checked, name, value } = e.target;
@@ -63,7 +70,7 @@ export const EditProduct = () => {
     e.preventDefault();
     const { createdAt, updatedAt, __v, slug, ...rest } = formData;
 
-    const formDta = new FormDta();
+    const formDta = new FormData();
 
     for (let key in rest) {
       formDta.append(key, formData[key]);
@@ -156,7 +163,7 @@ export const EditProduct = () => {
   return (
     <AdminLayout>
       <div className="mb-3">
-        <div className="py-3 fs-2">New Product</div>
+        <div className="py-3 fs-2">Update Product</div>
 
         <Link to="/products">
           {" "}
@@ -174,6 +181,14 @@ export const EditProduct = () => {
               onChange={handleOnChange}
             />
           </Form.Group>
+
+          <CustomSelect
+            label="Category"
+            args={categories}
+            func={handleOnChange}
+            name="parentCateory"
+            selectedCategory={selectedProduct.parentCategory}
+          />
 
           {inputes.map((item, i) => (
             <CustomInputField
@@ -198,7 +213,7 @@ export const EditProduct = () => {
                   />
                   <label htmlFor=""> Main Image</label>
                 </div>
-{/* here, substr will remove public with 6 character and takes images */}
+                {/* here, substr will remove public with 6 character and takes images */}
                 <img
                   src={process.env.REACT_APP_DOMAIN + item.substr(6)}
                   alt="product"

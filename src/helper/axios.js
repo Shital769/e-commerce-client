@@ -1,5 +1,5 @@
 import axios from "axios";
-const rootUrl = "http://localhost:8000/api/v1";
+const rootUrl = process.env.MONGO_CLIENT + "/api/v1";
 const adminApi = rootUrl + "/admin";
 const categoryApi = rootUrl + "/category";
 const paymentApi = rootUrl + "/payment";

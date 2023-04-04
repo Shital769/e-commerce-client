@@ -18,7 +18,7 @@ const CategoryTable = () => {
   const dispatch = useDispatch();
 
   const { categories } = useSelector((state) => state.category);
-  const [showCategories, setShowCategories] = useState({});
+  const [showCategories, setShowCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState({});
   const [active, setActive] = useState(1);
 
