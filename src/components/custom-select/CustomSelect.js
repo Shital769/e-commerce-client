@@ -11,7 +11,7 @@ export const CustomSelect = ({ label, args, func, name, selectedCategory }) => {
         name={name}
         required
         onChange={func}
-        value={selectedCategory || ""}
+        value={selectedCategory}
       >
         <option value="">Select category</option>
         {args.length > 0 &&
