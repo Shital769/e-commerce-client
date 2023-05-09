@@ -69,7 +69,7 @@ const PasswordResetForm = ({ handleOnPasswordReset }) => {
           <CustomInputField key={i} {...item} onChange={handleOnChange} />
         ))}
 
-        <Form.Group className="mb-3" controlId="formBAsicEmail">
+        <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Text>
             Your password must have at least 6 character long and one uppercasae
             and lower case.

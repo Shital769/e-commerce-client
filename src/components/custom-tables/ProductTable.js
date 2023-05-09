@@ -56,6 +56,7 @@ export const ProductTable = () => {
             </th>
             <th>Thumbnail</th>
             <th>Staus</th>
+            <th>Name</th>
             <th>Price</th>
             <th>Sales Price</th>
             <th>Qty</th>

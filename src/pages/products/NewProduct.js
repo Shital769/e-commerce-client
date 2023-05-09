@@ -1,15 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { AdminLayout } from "../layout/AdminLayout";
 import { CustomInputField } from "../../components/custom-input-field/CustomInputField";
+import { CustomSelect } from "../../components/custom-select/CustomSelect";
 import { postProductAction } from "./ProductAction";
+import { fetchCats } from "../category/CategoryAction";
+
+const initialState = {
+  status: "inactive",
+};
 
 export const NewProduct = () => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(initialState);
   const [newImages, setNewImages] = useState([]);
+
+  const { categories } = useSelector((state) => state.category);
+
+  useEffect(() => {
+    !categories.length && dispatch(fetchCats());
+  }, [categories.length, dispatch]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -117,6 +129,12 @@ export const NewProduct = () => {
           <Form.Group className="mb-3">
             <Form.Check name="status" type="switch" label="Status" />
           </Form.Group>
+
+          <CustomSelect
+            args={categories}
+            func={handleOnChange}
+            name="parentCat"
+          />
 
           {inputes.map((item, i) => (
             <CustomInputField
